@@ -14,26 +14,25 @@ const Ajout = (props) =>{
 
   const handleSubmit = event =>{
     event.preventDefault();
-    const id = new Date().getTime();
+    const id = 0;
     const titre = nouveauTitre;
-    const descrip = nouveauDescription;
-    props.onTodoAdd({id,titre,descrip});
+    const description = nouveauDescription;
+    props.onTodoAdd({id, titre, description});
     setNouveauTitre('');
     setNouveauDescription('');
   }
     return(
       <form onSubmit={handleSubmit}>
         <div id="gauche2">
-          <input class="inputEntree" value = {nouveauTitre}
+          <input className="inputEntree" value = {nouveauTitre}
           onChange = {handleChangeTitre} type="text" placeholder="Title: React"></input> <br/>
          <div id="divId">
-            <input class="inputEntree" value = {nouveauDescription}
+            <input className="inputEntree" value = {nouveauDescription}
           onChange = {handleChangeDescrip} type="text" placeholder="Description: Finish with hook's practising"></input>
           </div>
           <button type="submit" >Add todo</button>
         </div>
       </form>
-    
     )
 }
 

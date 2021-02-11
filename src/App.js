@@ -13,6 +13,9 @@ const App = () => {
 
 
   const handleAdd = todo => {
+    todo.id = (todos[todos.length-1].id + 1);
+    console.log("todo: ",todo)
+
     const updatedTodos = [...todos];
     updatedTodos.push(todo);
     setTodos(updatedTodos);
@@ -37,20 +40,24 @@ const App = () => {
       <Ajout onTodoAdd={handleAdd} />
       <div id="droite2">
         <table rules="basic" >
-          <tr id="tabEntete">
-            <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>State</th>
-            <th>Actions</th>
-          </tr>
-          {todos.map(todo => (
-            <List
-              key={todo.id}
-              details={todo}
-              onDelete={handleDelete}
-            />
-          ))}
+          <thead>
+            <tr id="tabEntete">
+              <th>ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>State</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {todos.map(todo => (
+              <List
+                key={todo.id}
+                details={todo}
+                onDelete={handleDelete}
+              />
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
