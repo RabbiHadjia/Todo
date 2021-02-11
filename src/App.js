@@ -5,9 +5,11 @@ import Ajout from "./Ajout";
 import List from "./List";
 
 const App = () => {
-  const [todos, setTodos] = useState([{id:1, titre:"livre 1", description:"description livre 1" },
-  {id:2, titre:"livre 2", description:"description livre 2" },
-  {id:3, titre:"livre 3", description:"description livre 3" }]);
+  const [todos, setTodos] = useState([
+  { id: 1, titre: "livre 1", description: "description livre 1" },
+  { id: 2, titre: "livre 2", description: "description livre 2" },
+  { id: 3, titre: "livre 3", description: "description livre 3" }
+]);
 
 
   const handleAdd = todo => {
@@ -42,7 +44,6 @@ const App = () => {
             <th>State</th>
             <th>Actions</th>
           </tr>
-          <tr>
           {todos.map(todo => (
             <List
               key={todo.id}
@@ -50,8 +51,6 @@ const App = () => {
               onDelete={handleDelete}
             />
           ))}
-
-          </tr>
         </table>
       </div>
     </div>
