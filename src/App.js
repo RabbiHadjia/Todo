@@ -46,7 +46,7 @@ const App = () => {
               <th>Title</th>
               <th>Description</th>
               <th>State</th>
-              <th>Actions</th>
+              <th style={{width: "20px"}}>Actions</th>
             </tr>
           </thead>
           <tbody>
