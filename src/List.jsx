@@ -19,7 +19,7 @@ const done = {
   }, ...statusStyle
 };
 
-const List = ({ details, onDelete, changeState }) => (
+const List = ({ details, handleDelete, changeState }) => (
   <tr>
         <td>{details.id}</td>
         <td>{details.titre}</td>
@@ -30,11 +30,11 @@ const List = ({ details, onDelete, changeState }) => (
           </span>
         </td>
         <td>
-          {details.state ?
+          {
+          details.state ?
             (<input checked="checked" type="checkbox" onChange={() => changeState(details.id)}/> ):
             (<input type="checkbox" onChange={() => changeState(details.id)}/> )
-          }
-          {/* <button onClick={() => onDelete(details.id)}><img src="supp.png" alt="...image" /></button> */}
+          }<span style={{fontSize:"15px", cursor: "pointer"}} onClick={() => handleDelete(details.id)}>🗑</span>
         </td>
   </tr>
 );

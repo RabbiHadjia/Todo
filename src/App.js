@@ -19,10 +19,18 @@ const App = () => {
     setTodos(updatedTodos);
   };
   const handleDelete = id => {
+
     const updatedTodos = [...todos];
     const index = updatedTodos.findIndex(todo => todo.id === id);
     updatedTodos.splice(index, 1);
     setTodos(updatedTodos);
+
+    // const updatedTodos = todos.map((elt, index) => {
+    //   if(elt.id !== id){
+    //     return elt;
+    //   }
+    // });
+    // setTodos(updatedTodos);
   };
 
   const changeState = id =>{
@@ -59,9 +67,8 @@ const App = () => {
             {todos.map((todo, index) => (
               <List
                 key={index}
-                key={todo.id}
                 details={todo}
-                onDelete={handleDelete}
+                handleDelete={handleDelete}
                 changeState={changeState}
               />
             ))}
