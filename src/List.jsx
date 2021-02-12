@@ -1,17 +1,39 @@
 import React from "react";
 
-const not_done = {background: "red", color: "white", padding: "2px", borderRadius: "3px;"};
-const done = {background: "green", color: "white", padding: "2px", borderRadius: "3px;"};
-const state = "not done";
+// Basic status style
+const statusStyle = {
+  color: "white",
+  padding: "2px",
+  borderRadius: "3px"
+}
 
-const List = ({ details, onDelete }) => (
+// adding the status style to done or not done
+const notDone = {
+  ...{
+    background: "red"
+  }, ...statusStyle
+};
+const done = {
+  ...{
+    background: "green"
+  }, ...statusStyle
+};
+
+const List = ({ details, onDelete, changeState }) => (
   <tr>
         <td>{details.id}</td>
         <td>{details.titre}</td>
         <td>{details.description}</td>
-        <td><span style={state == "not done" ? not_done : done}>{state}</span></td>
         <td>
-          <input type="checkbox" />
+          <span style={details.state ? done : notDone}>
+            {details.state ? "done" : "not done"}
+          </span>
+        </td>
+        <td>
+          {details.state ?
+            (<input checked="checked" type="checkbox" onChange={() => changeState(details.id)}/> ):
+            (<input type="checkbox" onChange={() => changeState(details.id)}/> )
+          }
           {/* <button onClick={() => onDelete(details.id)}><img src="supp.png" alt="...image" /></button> */}
         </td>
   </tr>

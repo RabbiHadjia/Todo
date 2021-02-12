@@ -5,17 +5,15 @@ import Ajout from "./Ajout";
 import List from "./List";
 
 const App = () => {
-  const [todos, setTodos] = useState([
-  { id: 1, titre: "livre 1", description: "description livre 1" },
-  { id: 2, titre: "livre 2", description: "description livre 2" },
-  { id: 3, titre: "livre 3", description: "description livre 3" }
-]);
 
+  const [todos, setTodos] = useState([
+    { id: 1, titre: "livre 1", description: "description livre 1", state: true },
+    { id: 2, titre: "livre 2", description: "description livre 2", state: false  },
+    { id: 3, titre: "livre 3", description: "description livre 3", state: true }
+  ]);
 
   const handleAdd = todo => {
-    todo.id = (todos[todos.length-1].id + 1);
-    console.log("todo: ",todo)
-
+    todo.id = todos[todos.length-1].id + 1;
     const updatedTodos = [...todos];
     updatedTodos.push(todo);
     setTodos(updatedTodos);
@@ -27,6 +25,14 @@ const App = () => {
     setTodos(updatedTodos);
   };
 
+  const changeState = id =>{
+    // loop over todos and change the state on the given id
+    const updatedTodos = todos.map((elt, index) => {
+      elt.state = (elt.id === id) ? !elt.state : elt.state;
+      return elt;
+    });
+    setTodos(updatedTodos);
+  };
 
   return (
     <div>
@@ -50,11 +56,13 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            {todos.map(todo => (
+            {todos.map((todo, index) => (
               <List
+                key={index}
                 key={todo.id}
                 details={todo}
                 onDelete={handleDelete}
+                changeState={changeState}
               />
             ))}
           </tbody>

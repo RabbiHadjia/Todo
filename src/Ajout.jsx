@@ -17,7 +17,13 @@ const Ajout = (props) =>{
     const id = 0;
     const titre = nouveauTitre;
     const description = nouveauDescription;
-    props.onTodoAdd({id, titre, description});
+    const state = false;
+    props.onTodoAdd({
+      id,
+      titre,
+      description,
+      state
+    });
     setNouveauTitre('');
     setNouveauDescription('');
   }
